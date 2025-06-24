@@ -10,10 +10,10 @@ const About = () => {
       <Navigation />
       
       {/* Hero Section */}
-      <section className="bg-gradient-to-r from-red-100 to-orange-100 py-16">
+      <section className="bg-gradient-to-r from-blessed-beige to-heavenly-yellow/30 py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <Heart className="h-16 w-16 text-sacred mx-auto mb-6" />
-          <h1 className="text-4xl md:text-5xl font-bold text-sacred mb-4">About Sacred Heart Parish</h1>
+          <Heart className="h-16 w-16 text-divine-red mx-auto mb-6" />
+          <h1 className="text-4xl md:text-5xl font-bold text-divine-red mb-4">About Sacred Heart Parish</h1>
           <p className="text-xl text-gray-700 max-w-3xl mx-auto">
             Four decades of faithful service, community building, and devotion to the Sacred Heart of Jesus
           </p>
@@ -25,7 +25,7 @@ const About = () => {
         <section className="mb-16">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div>
-              <h2 className="text-3xl font-bold text-sacred mb-6">Our Parish History</h2>
+              <h2 className="text-3xl font-bold text-divine-red mb-6">Our Parish History</h2>
               <div className="space-y-4 text-gray-700">
                 <p className="leading-relaxed">
                   Sacred Heart Parish was established in 1983 with a small but devoted group of Catholic families 
@@ -45,27 +45,27 @@ const About = () => {
                 </p>
               </div>
             </div>
-            <div className="bg-light-brown/20 rounded-xl p-8 border border-light-brown">
-              <h3 className="text-xl font-bold text-sacred mb-6">Key Milestones</h3>
+            <div className="bg-blessed-beige/40 rounded-xl p-8 border border-heavenly-yellow">
+              <h3 className="text-xl font-bold text-divine-red mb-6">Key Milestones</h3>
               <div className="space-y-4">
-                <div className="border-l-4 border-dark-brown pl-4">
-                  <h4 className="font-semibold text-dark-brown">1983</h4>
+                <div className="border-l-4 border-divine-red pl-4">
+                  <h4 className="font-semibold text-holy-burgundy">1983</h4>
                   <p className="text-sm text-gray-600">Parish establishment with first Mass celebration</p>
                 </div>
-                <div className="border-l-4 border-medium-brown pl-4">
-                  <h4 className="font-semibold text-medium-brown">1990</h4>
+                <div className="border-l-4 border-olive-green pl-4">
+                  <h4 className="font-semibold text-olive-green">1990</h4>
                   <p className="text-sm text-gray-600">Construction of the main church building</p>
                 </div>
-                <div className="border-l-4 border-dark-brown pl-4">
-                  <h4 className="font-semibold text-dark-brown">2000</h4>
+                <div className="border-l-4 border-sacred-flame-gold pl-4">
+                  <h4 className="font-semibold text-sacred-flame-gold">2000</h4>
                   <p className="text-sm text-gray-600">Establishment of 24 Anbiyams (Basic Christian Communities)</p>
                 </div>
-                <div className="border-l-4 border-medium-brown pl-4">
-                  <h4 className="font-semibold text-medium-brown">2010</h4>
+                <div className="border-l-4 border-heavenly-yellow pl-4">
+                  <h4 className="font-semibold text-holy-burgundy">2010</h4>
                   <p className="text-sm text-gray-600">Addition of Adoration Chapel and Community Welfare Center</p>
                 </div>
-                <div className="border-l-4 border-very-dark-brown pl-4">
-                  <h4 className="font-semibold text-very-dark-brown">2023</h4>
+                <div className="border-l-4 border-holy-burgundy pl-4">
+                  <h4 className="font-semibold text-holy-burgundy">2023</h4>
                   <p className="text-sm text-gray-600">40th Anniversary celebrations and parish renovations</p>
                 </div>
               </div>
@@ -76,9 +76,9 @@ const About = () => {
         {/* Mission & Vision */}
         <section className="mb-16">
           <div className="grid md:grid-cols-2 gap-8">
-            <Card className="border-l-4 border-l-dark-brown hover:shadow-lg transition-shadow">
+            <Card className="border-l-4 border-l-divine-red hover:shadow-lg transition-shadow">
               <CardHeader>
-                <CardTitle className="text-2xl text-sacred">Our Mission</CardTitle>
+                <CardTitle className="text-2xl text-divine-red">Our Mission</CardTitle>
               </CardHeader>
               <CardContent>
                 <p className="text-gray-700 leading-relaxed">
@@ -89,9 +89,9 @@ const About = () => {
               </CardContent>
             </Card>
 
-            <Card className="border-l-4 border-l-medium-brown hover:shadow-lg transition-shadow">
+            <Card className="border-l-4 border-l-olive-green hover:shadow-lg transition-shadow">
               <CardHeader>
-                <CardTitle className="text-2xl text-sacred">Our Vision</CardTitle>
+                <CardTitle className="text-2xl text-olive-green">Our Vision</CardTitle>
               </CardHeader>
               <CardContent>
                 <p className="text-gray-700 leading-relaxed">
@@ -106,31 +106,31 @@ const About = () => {
 
         {/* Parish Priests */}
         <section className="mb-16">
-          <h2 className="text-3xl font-bold text-sacred mb-8 text-center">Our Parish Priests</h2>
+          <h2 className="text-3xl font-bold text-divine-red mb-8 text-center">Our Parish Priests</h2>
           <div className="grid md:grid-cols-3 gap-8">
-            <Card className="text-center hover:shadow-lg transition-shadow border-t-4 border-t-medium-brown">
+            <Card className="text-center hover:shadow-lg transition-shadow border-t-4 border-t-olive-green">
               <CardContent className="p-6">
-                <div className="w-24 h-24 bg-light-brown rounded-full mx-auto mb-4"></div>
+                <div className="w-24 h-24 bg-blessed-beige rounded-full mx-auto mb-4"></div>
                 <h3 className="font-bold text-lg mb-2">Rev. Fr. Current Pastor</h3>
-                <p className="text-sacred font-medium">Current Parish Priest</p>
+                <p className="text-divine-red font-medium">Current Parish Priest</p>
                 <p className="text-sm text-gray-600 mt-2">2020 - Present</p>
               </CardContent>
             </Card>
 
-            <Card className="text-center hover:shadow-lg transition-shadow border-t-4 border-t-dark-brown">
+            <Card className="text-center hover:shadow-lg transition-shadow border-t-4 border-t-sacred-flame-gold">
               <CardContent className="p-6">
-                <div className="w-24 h-24 bg-light-brown rounded-full mx-auto mb-4"></div>
+                <div className="w-24 h-24 bg-blessed-beige rounded-full mx-auto mb-4"></div>
                 <h3 className="font-bold text-lg mb-2">Rev. Fr. Previous Pastor</h3>
-                <p className="text-sacred font-medium">Former Parish Priest</p>
+                <p className="text-sacred-flame-gold font-medium">Former Parish Priest</p>
                 <p className="text-sm text-gray-600 mt-2">2010 - 2020</p>
               </CardContent>
             </Card>
 
-            <Card className="text-center hover:shadow-lg transition-shadow border-t-4 border-t-very-dark-brown">
+            <Card className="text-center hover:shadow-lg transition-shadow border-t-4 border-t-holy-burgundy">
               <CardContent className="p-6">
-                <div className="w-24 h-24 bg-light-brown rounded-full mx-auto mb-4"></div>
+                <div className="w-24 h-24 bg-blessed-beige rounded-full mx-auto mb-4"></div>
                 <h3 className="font-bold text-lg mb-2">Rev. Fr. Founding Pastor</h3>
-                <p className="text-sacred font-medium">Founding Parish Priest</p>
+                <p className="text-holy-burgundy font-medium">Founding Parish Priest</p>
                 <p className="text-sm text-gray-600 mt-2">1983 - 2010</p>
               </CardContent>
             </Card>
@@ -138,35 +138,35 @@ const About = () => {
         </section>
 
         {/* Community Structure */}
-        <section className="mb-16 bg-light-brown/10 rounded-xl p-8 border border-light-brown">
-          <h2 className="text-3xl font-bold text-sacred mb-8 text-center">Our Community Structure</h2>
+        <section className="mb-16 bg-blessed-beige/20 rounded-xl p-8 border border-heavenly-yellow">
+          <h2 className="text-3xl font-bold text-divine-red mb-8 text-center">Our Community Structure</h2>
           <div className="grid md:grid-cols-4 gap-6">
             <div className="text-center">
-              <div className="inline-block p-4 bg-medium-brown/10 rounded-full mb-4">
-                <Users className="h-12 w-12 text-medium-brown mx-auto" />
+              <div className="inline-block p-4 bg-olive-green/10 rounded-full mb-4">
+                <Users className="h-12 w-12 text-olive-green mx-auto" />
               </div>
-              <h3 className="font-bold text-lg mb-2 text-dark-brown">24 Anbiyams</h3>
+              <h3 className="font-bold text-lg mb-2 text-holy-burgundy">24 Anbiyams</h3>
               <p className="text-sm text-gray-600">Basic Christian Communities fostering fellowship and faith sharing</p>
             </div>
             <div className="text-center">
-              <div className="inline-block p-4 bg-medium-brown/10 rounded-full mb-4">
-                <Heart className="h-12 w-12 text-medium-brown mx-auto" />
+              <div className="inline-block p-4 bg-divine-red/10 rounded-full mb-4">
+                <Heart className="h-12 w-12 text-divine-red mx-auto" />
               </div>
-              <h3 className="font-bold text-lg mb-2 text-dark-brown">Parish Council</h3>
+              <h3 className="font-bold text-lg mb-2 text-divine-red">Parish Council</h3>
               <p className="text-sm text-gray-600">Lay leadership guiding parish activities and decision-making</p>
             </div>
             <div className="text-center">
-              <div className="inline-block p-4 bg-medium-brown/10 rounded-full mb-4">
-                <Calendar className="h-12 w-12 text-medium-brown mx-auto" />
+              <div className="inline-block p-4 bg-sacred-flame-gold/10 rounded-full mb-4">
+                <Calendar className="h-12 w-12 text-sacred-flame-gold mx-auto" />
               </div>
-              <h3 className="font-bold text-lg mb-2 text-dark-brown">Youth Ministry</h3>
+              <h3 className="font-bold text-lg mb-2 text-sacred-flame-gold">Youth Ministry</h3>
               <p className="text-sm text-gray-600">Empowering young people in faith formation and leadership</p>
             </div>
             <div className="text-center">
-              <div className="inline-block p-4 bg-medium-brown/10 rounded-full mb-4">
-                <MapPin className="h-12 w-12 text-medium-brown mx-auto" />
+              <div className="inline-block p-4 bg-heavenly-yellow/20 rounded-full mb-4">
+                <MapPin className="h-12 w-12 text-holy-burgundy mx-auto" />
               </div>
-              <h3 className="font-bold text-lg mb-2 text-dark-brown">Women's Groups</h3>
+              <h3 className="font-bold text-lg mb-2 text-holy-burgundy">Women's Groups</h3>
               <p className="text-sm text-gray-600">Supporting spiritual growth and community service</p>
             </div>
           </div>
@@ -174,9 +174,9 @@ const About = () => {
 
         {/* Diocese Information */}
         <section>
-          <Card className="border border-light-brown">
+          <Card className="border border-blessed-beige">
             <CardHeader>
-              <CardTitle className="text-2xl text-sacred text-center">Diocese Information</CardTitle>
+              <CardTitle className="text-2xl text-divine-red text-center">Diocese Information</CardTitle>
             </CardHeader>
             <CardContent className="text-center">
               <p className="text-gray-700 mb-4">

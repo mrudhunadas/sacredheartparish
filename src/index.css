@@ -1,9 +1,9 @@
 
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap');
 
 @layer base {
   :root {
@@ -96,7 +96,7 @@
 
 /* Enhanced gradients and animations */
 .sacred-gradient {
-  background: linear-gradient(135deg, #8B0000 0%, #A0522D 25%, #CD853F 50%, #D2B48C 75%, #F5DEB3 100%);
+  background: linear-gradient(135deg, #A3212E 0%, #6C1C1C 25%, #FFA735 50%, #E9D688 75%, #F8F5F0 100%);
   background-size: 400% 400%;
   animation: gradientShift 10s ease infinite;
 }
@@ -118,53 +118,89 @@
   border-color: #8B0000;
 }
 
-/* Brown color palette classes */
-.text-light-brown {
-  color: #D2B48C;
+/* Sacred Heart Color Palette Classes */
+.text-divine-red {
+  color: #A3212E;
 }
 
-.bg-light-brown {
-  background-color: #D2B48C;
+.bg-divine-red {
+  background-color: #A3212E;
 }
 
-.border-light-brown {
-  border-color: #D2B48C;
+.border-divine-red {
+  border-color: #A3212E;
 }
 
-.text-medium-brown {
-  color: #A0522D;
+.text-sacred-flame-gold {
+  color: #FFA735;
 }
 
-.bg-medium-brown {
-  background-color: #A0522D;
+.bg-sacred-flame-gold {
+  background-color: #FFA735;
 }
 
-.border-medium-brown {
-  border-color: #A0522D;
+.border-sacred-flame-gold {
+  border-color: #FFA735;
 }
 
-.text-dark-brown {
-  color: #8B4513;
+.text-heavenly-yellow {
+  color: #E9D688;
 }
 
-.bg-dark-brown {
-  background-color: #8B4513;
+.bg-heavenly-yellow {
+  background-color: #E9D688;
 }
 
-.border-dark-brown {
-  border-color: #8B4513;
+.border-heavenly-yellow {
+  border-color: #E9D688;
 }
 
-.text-very-dark-brown {
-  color: #654321;
+.text-olive-green {
+  color: #618B53;
 }
 
-.bg-very-dark-brown {
-  background-color: #654321;
+.bg-olive-green {
+  background-color: #618B53;
 }
 
-.border-very-dark-brown {
-  border-color: #654321;
+.border-olive-green {
+  border-color: #618B53;
+}
+
+.text-holy-burgundy {
+  color: #6C1C1C;
+}
+
+.bg-holy-burgundy {
+  background-color: #6C1C1C;
+}
+
+.border-holy-burgundy {
+  border-color: #6C1C1C;
+}
+
+.text-blessed-beige {
+  color: #F4EDE4;
+}
+
+.bg-blessed-beige {
+  background-color: #F4EDE4;
+}
+
+.border-blessed-beige {
+  border-color: #F4EDE4;
+}
+
+.text-radiant-halo-white {
+  color: #F8F5F0;
+}
+
+.bg-radiant-halo-white {
+  background-color: #F8F5F0;
+}
+
+.border-radiant-halo-white {
+  border-color: #F8F5F0;
 }
 
 /* Enhanced animations */
@@ -225,7 +261,7 @@
 
 /* Text gradient */
 .text-gradient {
-  background: linear-gradient(135deg, #8B0000, #A0522D);
+  background: linear-gradient(135deg, #A3212E, #FFA735);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -241,12 +277,12 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #8B4513;
+  background: #618B53;
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #A0522D;
+  background: #A3212E;
 }
 
 /* Glass morphism effects */

@@ -63,11 +63,14 @@ export default {
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
 				},
-				// Brown color palette
-				'light-brown': '#D2B48C',
-				'medium-brown': '#A0522D',
-				'dark-brown': '#8B4513',
-				'very-dark-brown': '#654321',
+				// Sacred Heart Color Palette
+				'divine-red': '#A3212E',
+				'sacred-flame-gold': '#FFA735',
+				'heavenly-yellow': '#E9D688',
+				'olive-green': '#618B53',
+				'holy-burgundy': '#6C1C1C',
+				'blessed-beige': '#F4EDE4',
+				'radiant-halo-white': '#F8F5F0',
 				'sacred': '#8B0000'
 			},
 			borderRadius: {

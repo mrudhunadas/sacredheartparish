@@ -1,30 +1,47 @@
 
 import { Button } from '@/components/ui/button';
-import { Heart, Calendar, MapPin, Users } from 'lucide-react';
+import { Heart, Calendar, MapPin, Users, Plus } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const HeroSection = () => {
+  const handleAddToCalendar = () => {
+    const eventDetails = {
+      title: 'Sacred Heart Parish - Sunday Mass',
+      start: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000), // Next Sunday
+      end: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000 + 60 * 60 * 1000), // 1 hour later
+      description: 'Join us for Sunday Mass at Sacred Heart Parish',
+      location: 'Sacred Heart Parish, Your Location'
+    };
+
+    // Create calendar event URL
+    const startDate = eventDetails.start.toISOString().replace(/[-:]/g, '').split('.')[0];
+    const endDate = eventDetails.end.toISOString().replace(/[-:]/g, '').split('.')[0];
+    
+    const googleCalendarUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(eventDetails.title)}&dates=${startDate}Z/${endDate}Z&details=${encodeURIComponent(eventDetails.description)}&location=${encodeURIComponent(eventDetails.location)}`;
+    
+    window.open(googleCalendarUrl, '_blank');
+  };
+
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Enhanced Animated Background with Luxury Gradient */}
-      <div className="absolute inset-0 sacred-gradient">
-        <div className="absolute inset-0 bg-black opacity-40"></div>
-        <div className="absolute inset-0 bg-gradient-to-br from-transparent via-red-900/30 to-orange-800/40"></div>
-        <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent"></div>
+      {/* Clean Sacred Heart Gradient Background */}
+      <div className="absolute inset-0 bg-gradient-to-br from-divine-red via-holy-burgundy to-sacred-flame-gold">
+        <div className="absolute inset-0 bg-black/30"></div>
+        <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent"></div>
       </div>
 
-      {/* Enhanced Floating particles effect */}
+      {/* Subtle floating particles */}
       <div className="absolute inset-0 overflow-hidden">
-        {[...Array(20)].map((_, i) => (
+        {[...Array(15)].map((_, i) => (
           <div
             key={i}
-            className="absolute bg-white rounded-full animate-pulse"
+            className="absolute bg-heavenly-yellow/30 rounded-full animate-pulse"
             style={{
-              width: `${Math.random() * 3 + 1}px`,
-              height: `${Math.random() * 3 + 1}px`,
+              width: `${Math.random() * 4 + 2}px`,
+              height: `${Math.random() * 4 + 2}px`,
               left: `${Math.random() * 100}%`,
               top: `${Math.random() * 100}%`,
-              opacity: Math.random() * 0.2 + 0.1,
+              opacity: Math.random() * 0.3 + 0.1,
               animationDelay: `${Math.random() * 5}s`,
               animationDuration: `${4 + Math.random() * 3}s`
             }}
@@ -32,93 +49,100 @@ const HeroSection = () => {
         ))}
       </div>
 
-      {/* Enhanced Content with Better Spacing */}
-      <div className="relative z-10 text-center px-6 lg:px-8 max-w-6xl mx-auto">
+      {/* Subtle radial glow */}
+      <div className="absolute inset-0">
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-sacred-flame-gold/15 rounded-full blur-3xl animate-pulse-slow"></div>
+      </div>
+
+      {/* Clean Content Layout */}
+      <div className="relative z-10 text-center px-6 lg:px-8 max-w-5xl mx-auto">
         <div className="animate-fade-in space-y-8">
-          {/* Enhanced Logo Section */}
+          {/* Simplified Sacred Heart Logo */}
           <div className="flex justify-center mb-8">
             <div className="relative group">
-              <div className="absolute inset-0 bg-white rounded-full opacity-20 animate-pulse blur-sm"></div>
-              <div className="relative bg-white bg-opacity-15 backdrop-blur-lg rounded-full p-6 border border-white/30 shadow-xl group-hover:scale-105 transition-transform duration-500">
-                <Heart className="h-16 w-16 text-white fill-current drop-shadow-xl" />
+              <div className="bg-radiant-halo-white/20 backdrop-blur-xl rounded-full p-8 border-2 border-sacred-flame-gold/40 shadow-2xl group-hover:scale-105 transition-transform duration-500">
+                <Heart className="h-16 w-16 text-radiant-halo-white fill-current drop-shadow-xl" />
               </div>
             </div>
           </div>
           
-          {/* Enhanced Typography Section */}
-          <div className="space-y-6">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white drop-shadow-xl tracking-tight leading-tight">
+          {/* Clean Typography Section */}
+          <div className="space-y-4 mb-8">
+            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-radiant-halo-white drop-shadow-2xl tracking-tight">
               Sacred Heart Parish
             </h1>
-            
-            <div className="space-y-4 max-w-3xl mx-auto">
-              <p className="text-lg md:text-xl lg:text-2xl text-white/95 font-light tracking-wide">
-                Welcome to Our Faith Community
-              </p>
-              <p className="text-base md:text-lg text-white/90 font-medium tracking-wide">
-                Serving with love since 1983
-              </p>
-              <div className="flex justify-center">
-                <div className="w-24 h-0.5 bg-gradient-to-r from-transparent via-white/80 to-transparent rounded-full"></div>
-              </div>
-            </div>
+            <p className="text-xl md:text-2xl text-heavenly-yellow font-light drop-shadow-lg">
+              Welcome to Our Faith Community
+            </p>
+            <p className="text-lg text-blessed-beige font-medium drop-shadow-lg">
+              Serving with love and devotion since 1983
+            </p>
           </div>
 
-          {/* Enhanced Action Buttons */}
-          <div className="flex flex-col sm:flex-row gap-4 lg:gap-6 justify-center items-center pt-6">
+          {/* Compact Action Buttons */}
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
             <Button 
               size="lg" 
-              variant="secondary" 
-              className="text-base px-8 py-3 hover:scale-105 transition-all duration-300 shadow-xl font-semibold tracking-wide min-w-[180px]"
+              className="bg-gradient-to-r from-sacred-flame-gold to-heavenly-yellow hover:from-heavenly-yellow hover:to-sacred-flame-gold text-holy-burgundy text-lg px-8 py-3 hover:scale-105 transition-all duration-300 shadow-xl font-semibold min-w-[220px] border-0 rounded-lg"
               asChild
             >
               <Link to="/mass-services">
-                <Calendar className="mr-2 h-5 w-5" />
+                <Calendar className="mr-3 h-5 w-5" />
                 View Mass Schedule
               </Link>
             </Button>
+            
+            <Button 
+              size="lg" 
+              onClick={handleAddToCalendar}
+              className="bg-gradient-to-r from-olive-green to-olive-green hover:from-olive-green/90 hover:to-olive-green/90 text-radiant-halo-white text-lg px-8 py-3 hover:scale-105 transition-all duration-300 shadow-xl font-semibold min-w-[220px] border-0 rounded-lg"
+            >
+              <Plus className="mr-3 h-5 w-5" />
+              Add to Calendar
+            </Button>
+            
             <Button 
               size="lg" 
               variant="outline" 
-              className="border-2 border-white bg-white/20 text-white hover:bg-white hover:text-sacred text-base px-8 py-3 hover:scale-105 transition-all duration-300 shadow-xl backdrop-blur-lg font-semibold tracking-wide min-w-[180px]"
+              className="border-2 border-radiant-halo-white bg-radiant-halo-white/15 text-radiant-halo-white hover:bg-radiant-halo-white hover:text-divine-red text-lg px-8 py-3 hover:scale-105 transition-all duration-300 shadow-xl backdrop-blur-xl font-semibold min-w-[220px] rounded-lg"
               asChild
             >
               <Link to="/contact">
-                <MapPin className="mr-2 h-5 w-5" />
+                <MapPin className="mr-3 h-5 w-5" />
                 Visit Us
               </Link>
             </Button>
           </div>
 
-          {/* Enhanced Quick Stats with Luxury Design */}
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6 mt-16 pt-6">
+          {/* Compact Stats Grid */}
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 max-w-4xl mx-auto">
             {[
-              { number: '40+', label: 'Years of Service', icon: Heart },
-              { number: '24', label: 'Anbiyams', icon: Users },
-              { number: '500+', label: 'Families', icon: Users },
-              { number: '3', label: 'Daily Masses', icon: Calendar }
+              { number: '40+', label: 'Years of Service', icon: Heart, color: 'divine-red' },
+              { number: '24', label: 'Anbiyams', icon: Users, color: 'olive-green' },
+              { number: '500+', label: 'Families', icon: Users, color: 'sacred-flame-gold' },
+              { number: '3', label: 'Daily Masses', icon: Calendar, color: 'heavenly-yellow' }
             ].map((stat, index) => (
               <div 
                 key={index} 
-                className="text-center bg-white/15 backdrop-blur-lg rounded-xl p-4 lg:p-6 border border-white/30 hover:bg-white/25 hover:scale-105 transition-all duration-500 shadow-xl group"
+                className="text-center bg-radiant-halo-white/15 backdrop-blur-xl rounded-2xl p-6 border border-radiant-halo-white/30 hover:bg-radiant-halo-white/25 hover:scale-105 transition-all duration-300 shadow-xl group"
               >
-                <div className="mb-3 flex justify-center">
-                  <div className="p-2 bg-white/20 rounded-full group-hover:bg-white/30 transition-colors duration-300">
-                    <stat.icon className="h-6 w-6 lg:h-7 lg:w-7 text-white" />
+                <div className="mb-4 flex justify-center">
+                  <div className={`p-3 bg-${stat.color}/20 rounded-full group-hover:bg-${stat.color}/30 transition-colors duration-300 border border-${stat.color}/40`}>
+                    <stat.icon className={`h-6 w-6 text-${stat.color === 'heavenly-yellow' ? 'heavenly-yellow' : stat.color}`} />
                   </div>
                 </div>
-                <div className="text-2xl lg:text-3xl font-bold text-white mb-1 tracking-tight">{stat.number}</div>
-                <div className="text-white/90 text-xs lg:text-sm font-medium tracking-wide">{stat.label}</div>
+                <div className="text-3xl font-bold text-radiant-halo-white mb-2 drop-shadow-lg">{stat.number}</div>
+                <div className="text-blessed-beige text-sm font-medium drop-shadow-lg">{stat.label}</div>
               </div>
             ))}
           </div>
         </div>
       </div>
 
-      {/* Enhanced Scroll indicator */}
+      {/* Clean Scroll Indicator */}
       <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-        <div className="w-6 h-10 border-2 border-white/60 rounded-full flex justify-center backdrop-blur-sm bg-white/10">
-          <div className="w-1 h-3 bg-white/80 rounded-full mt-2 animate-pulse"></div>
+        <div className="w-8 h-12 border-2 border-sacred-flame-gold/60 rounded-full flex justify-center backdrop-blur-sm bg-radiant-halo-white/10">
+          <div className="w-1.5 h-4 bg-sacred-flame-gold/80 rounded-full mt-3 animate-pulse"></div>
         </div>
       </div>
     </section>
