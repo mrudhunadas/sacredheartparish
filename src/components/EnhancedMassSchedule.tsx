@@ -1,7 +1,6 @@
-
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { Clock, MapPin, Users, Calendar } from 'lucide-react';
+import { Clock, MapPin, Users, Calendar, Plus } from 'lucide-react';
 
 const EnhancedMassSchedule = () => {
   const massSchedule = [
@@ -30,6 +29,56 @@ const EnhancedMassSchedule = () => {
       special: true
     },
   ];
+
+  const handleAddToCalendar = (massType: string, time: string) => {
+    const now = new Date();
+    let targetDate = new Date(now);
+    
+    // Calculate next occurrence based on mass type
+    if (massType.includes('Daily')) {
+      // Next weekday
+      const daysToAdd = now.getDay() === 6 ? 2 : (now.getDay() === 0 ? 1 : 1);
+      targetDate.setDate(now.getDate() + daysToAdd);
+      targetDate.setHours(6, 30, 0, 0);
+    } else if (massType.includes('Vigil')) {
+      // Next Saturday
+      const daysUntilSaturday = (6 - now.getDay() + 7) % 7;
+      targetDate.setDate(now.getDate() + (daysUntilSaturday === 0 ? 7 : daysUntilSaturday));
+      targetDate.setHours(18, 0, 0, 0); // 6:00 PM
+    } else if (massType.includes('Sunday')) {
+      // Next Sunday
+      const daysUntilSunday = (7 - now.getDay()) % 7;
+      targetDate.setDate(now.getDate() + (daysUntilSunday === 0 ? 7 : daysUntilSunday));
+      targetDate.setHours(8, 0, 0, 0); // Default to 8:00 AM
+    }
+
+    const eventEndDate = new Date(targetDate.getTime() + 60 * 60 * 1000); // 1 hour later
+
+    const eventDetails = {
+      title: `Sacred Heart Parish - ${massType}`,
+      start: targetDate,
+      end: eventEndDate,
+      description: `Join us for ${massType} at Sacred Heart Parish. Experience worship, community, and spiritual growth.`,
+      location: 'Sacred Heart Parish, Main Church'
+    };
+
+    // Format dates for Google Calendar
+    const formatCalendarDate = (date: Date) => {
+      return date.toISOString().replace(/[-:]/g, '').split('.')[0] + 'Z';
+    };
+
+    const startDate = formatCalendarDate(eventDetails.start);
+    const calendarEndDate = formatCalendarDate(eventDetails.end);
+    
+    const googleCalendarUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(eventDetails.title)}&dates=${startDate}/${calendarEndDate}&details=${encodeURIComponent(eventDetails.description)}&location=${encodeURIComponent(eventDetails.location)}`;
+    
+    window.open(googleCalendarUrl, '_blank');
+  };
+
+  const handleViewFullCalendar = () => {
+    // Navigate to events page
+    window.location.href = '/events';
+  };
 
   return (
     <section className="py-20 bg-gradient-to-br from-blessed-beige via-radiant-halo-white to-heavenly-yellow/20">
@@ -84,7 +133,11 @@ const EnhancedMassSchedule = () => {
                 </div>
 
                 <div className="pt-4">
-                  <button className="w-full bg-olive-green/10 hover:bg-olive-green hover:text-white text-olive-green py-3 px-4 rounded-md transition-all duration-300 text-sm font-semibold tracking-wide">
+                  <button 
+                    onClick={() => handleAddToCalendar(mass.type, mass.time)}
+                    className="w-full bg-olive-green/10 hover:bg-olive-green hover:text-white text-olive-green py-3 px-4 rounded-md transition-all duration-300 text-sm font-semibold tracking-wide flex items-center justify-center gap-2"
+                  >
+                    <Plus className="h-4 w-4" />
                     Add to Calendar
                   </button>
                 </div>
@@ -100,7 +153,10 @@ const EnhancedMassSchedule = () => {
             <p className="text-gray-600 mb-6 leading-relaxed">
               Join us for Eucharistic Adoration Monday-Friday 9:00 AM - 6:00 PM
             </p>
-            <button className="bg-divine-red text-white px-8 py-3 rounded-md hover:bg-holy-burgundy transition-colors font-semibold">
+            <button 
+              onClick={handleViewFullCalendar}
+              className="bg-divine-red text-white px-8 py-3 rounded-md hover:bg-holy-burgundy transition-colors font-semibold"
+            >
               View Full Calendar
             </button>
           </div>

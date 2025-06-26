@@ -2,57 +2,94 @@
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Calendar, Heart, Users, MapPin, Bell, Clock, Mail } from 'lucide-react';
+import { Calendar, Heart, Users, MapPin, Bell, Clock, Mail, ArrowLeft } from 'lucide-react';
 import { useState } from 'react';
+import { useSearchParams, Link } from 'react-router-dom';
 
 const Events = () => {
   const [email, setEmail] = useState('');
   const [subscriptionStatus, setSubscriptionStatus] = useState<'idle' | 'success' | 'error'>('idle');
+  const [searchParams] = useSearchParams();
+  const selectedEventId = searchParams.get('event');
 
   const upcomingEvents = [
     {
+      id: 'parish-feast',
       title: 'Sacred Heart Parish Feast Day',
       date: 'June 28, 2024',
       time: '7:00 AM - 9:00 PM',
       location: 'Parish Grounds',
       description: 'Annual feast day celebration with special Mass, cultural programs, and community feast.',
+      fullDescription: `Join us for our most significant annual celebration - the Sacred Heart Parish Feast Day! This blessed day commemorates our parish's dedication to the Sacred Heart of Jesus and brings together our entire community in joyful worship and fellowship.
+
+The celebration begins with a solemn High Mass at 7:00 AM, followed by special prayers and devotions throughout the day. Our parishioners will present beautiful cultural programs showcasing our rich Tamil heritage, including traditional songs, classical dances, and contemporary performances by our youth.
+
+The highlight of the day will be our community feast, featuring authentic South Indian cuisine lovingly prepared by our parish volunteers. This is truly a day where our entire parish family comes together to celebrate our shared faith, culture, and community bonds.`,
       category: 'Parish Feast',
+      contact: 'Parish Office: +91 XXX XXX XXXX',
       urgent: true
     },
     {
+      id: 'youth-ministry',
       title: 'Youth Ministry Meeting',
       date: 'June 25, 2024',
       time: '6:00 PM - 8:00 PM',
       location: 'Parish Hall',
       description: 'Monthly youth ministry meeting to plan upcoming activities and spiritual programs.',
+      fullDescription: `Our monthly Youth Ministry meeting brings together young parishioners aged 16-30 to plan exciting activities and deepen their faith journey. This month's meeting will focus on organizing our upcoming youth retreat and various community service initiatives.
+
+Agenda includes:
+- Planning the annual youth retreat
+- Organizing community service projects
+- Faith sharing and spiritual development
+- Recreational activities and sports events
+- Leadership development workshops
+
+The Youth Ministry is the vibrant heart of our parish's future, fostering both spiritual growth and social bonds among our young community members. All young adults are warmly invited to join us and contribute their ideas and energy.`,
       category: 'Youth Ministry',
+      contact: 'Youth Coordinator: youth@sacredheart.org',
       urgent: false
     },
     {
+      id: 'anbiyam-conference',
       title: 'Anbiyam Leaders Conference',
       date: 'July 5, 2024',
       time: '9:00 AM - 4:00 PM',
       location: 'Community Center',
       description: 'Quarterly meeting for all Anbiyam leaders to discuss community initiatives.',
+      fullDescription: `Our quarterly Anbiyam Leaders Conference brings together representatives from all 24 Basic Christian Communities to strengthen our parish's pastoral care and community outreach efforts.
+
+This important gathering will cover:
+- Review of community pastoral activities
+- Planning for upcoming seasonal celebrations
+- Discussion of social welfare initiatives
+- Coordination of prayer groups and Bible study circles
+- Resource sharing between Anbiyams
+
+Each Anbiyam plays a crucial role in maintaining the spiritual and social fabric of our parish community. This conference ensures we continue to serve our parishioners with love, care, and Christian fellowship.`,
       category: 'Community',
+      contact: 'Anbiyam Coordinator: anbiyam@sacredheart.org',
       urgent: false
     }
   ];
 
   const recentNews = [
     {
+      id: 'adoration-hours',
       title: 'New Adoration Chapel Hours',
       date: 'June 15, 2024',
       content: 'Effective July 1st, our Adoration Chapel will be open from 9:00 AM to 6:00 PM, Monday through Friday.',
       category: 'Announcement'
     },
     {
+      id: 'youth-camp',
       title: 'Summer Youth Camp Registration',
       date: 'June 10, 2024',
       content: 'Registration is now open for our annual summer youth camp scheduled for July 15-20. Limited spots available.',
       category: 'Registration'
     },
     {
+      id: 'garden-project',
       title: 'Parish Garden Project Success',
       date: 'June 5, 2024',
       content: 'Thanks to community volunteers, our new parish garden is thriving and will provide fresh produce for our food ministry.',
@@ -74,12 +111,65 @@ const Events = () => {
   const handleNewsletterSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (email) {
-      // Simulate subscription process
       setSubscriptionStatus('success');
       setEmail('');
       setTimeout(() => setSubscriptionStatus('idle'), 3000);
     }
   };
+
+  const selectedEvent = upcomingEvents.find(event => event.id === selectedEventId);
+
+  if (selectedEvent) {
+    return (
+      <div className="min-h-screen bg-radiant-halo-white">
+        <Navigation />
+        
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+          <Link 
+            to="/events" 
+            className="inline-flex items-center text-divine-red hover:text-holy-burgundy mb-8 font-medium"
+          >
+            <ArrowLeft className="h-4 w-4 mr-2" />
+            Back to Events
+          </Link>
+
+          <Card className="border border-olive-green/30 shadow-xl bg-gradient-to-br from-white to-blessed-beige/30">
+            <CardHeader className="pb-6">
+              <div className={`w-full h-2 bg-gradient-to-r ${getCategoryColor(selectedEvent.category)} mb-4 rounded`}></div>
+              <CardTitle className="text-3xl text-divine-red mb-4">{selectedEvent.title}</CardTitle>
+              <div className="grid md:grid-cols-3 gap-4">
+                <div className="flex items-center space-x-2">
+                  <Calendar className="h-5 w-5 text-divine-red" />
+                  <span className="font-medium">{selectedEvent.date}</span>
+                </div>
+                <div className="flex items-center space-x-2">
+                  <Clock className="h-5 w-5 text-divine-red" />
+                  <span className="font-medium">{selectedEvent.time}</span>
+                </div>
+                <div className="flex items-center space-x-2">
+                  <MapPin className="h-5 w-5 text-divine-red" />
+                  <span className="font-medium">{selectedEvent.location}</span>
+                </div>
+              </div>
+            </CardHeader>
+            <CardContent className="space-y-6">
+              <div className="prose prose-gray max-w-none">
+                <p className="text-gray-700 leading-relaxed whitespace-pre-line text-lg">
+                  {selectedEvent.fullDescription}
+                </p>
+              </div>
+              <div className="p-4 bg-divine-red/5 rounded-lg border border-divine-red/20">
+                <p className="font-semibold text-divine-red mb-2">Contact Information</p>
+                <p className="text-gray-700">{selectedEvent.contact}</p>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+
+        <Footer />
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-radiant-halo-white">
@@ -135,9 +225,12 @@ const Events = () => {
                     <span className="text-sm text-gray-600">{event.location}</span>
                   </div>
                   <p className="text-gray-600 text-sm leading-relaxed">{event.description}</p>
-                  <button className="w-full mt-4 bg-gradient-to-r from-olive-green to-olive-green hover:from-divine-red hover:to-holy-burgundy text-white py-2 px-4 rounded-md transition-all duration-300 text-sm font-medium">
+                  <Link 
+                    to={`/events?event=${event.id}`}
+                    className="w-full mt-4 bg-gradient-to-r from-olive-green to-olive-green hover:from-divine-red hover:to-holy-burgundy text-white py-2 px-4 rounded-md transition-all duration-300 text-sm font-medium inline-block text-center"
+                  >
                     Learn More
-                  </button>
+                  </Link>
                 </CardContent>
               </Card>
             ))}

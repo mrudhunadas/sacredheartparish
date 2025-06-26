@@ -5,19 +5,29 @@ import { Link } from 'react-router-dom';
 
 const HeroSection = () => {
   const handleAddToCalendar = () => {
+    const now = new Date();
+    const nextSunday = new Date(now);
+    const daysUntilSunday = (7 - now.getDay()) % 7;
+    nextSunday.setDate(now.getDate() + (daysUntilSunday === 0 ? 7 : daysUntilSunday));
+    nextSunday.setHours(8, 0, 0, 0); // 8:00 AM
+
     const eventDetails = {
       title: 'Sacred Heart Parish - Sunday Mass',
-      start: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000), // Next Sunday
-      end: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000 + 60 * 60 * 1000), // 1 hour later
-      description: 'Join us for Sunday Mass at Sacred Heart Parish',
-      location: 'Sacred Heart Parish, Your Location'
+      start: nextSunday,
+      end: new Date(nextSunday.getTime() + 60 * 60 * 1000), // 1 hour later
+      description: 'Join us for Sunday Mass at Sacred Heart Parish. Experience worship, community, and spiritual growth in our beautiful sacred space.',
+      location: 'Sacred Heart Parish, Main Church'
     };
 
-    // Create calendar event URL
-    const startDate = eventDetails.start.toISOString().replace(/[-:]/g, '').split('.')[0];
-    const endDate = eventDetails.end.toISOString().replace(/[-:]/g, '').split('.')[0];
+    // Format dates for Google Calendar (YYYYMMDDTHHMMSSZ)
+    const formatCalendarDate = (date: Date) => {
+      return date.toISOString().replace(/[-:]/g, '').split('.')[0] + 'Z';
+    };
+
+    const startDate = formatCalendarDate(eventDetails.start);
+    const endDate = formatCalendarDate(eventDetails.end);
     
-    const googleCalendarUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(eventDetails.title)}&dates=${startDate}Z/${endDate}Z&details=${encodeURIComponent(eventDetails.description)}&location=${encodeURIComponent(eventDetails.location)}`;
+    const googleCalendarUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(eventDetails.title)}&dates=${startDate}/${endDate}&details=${encodeURIComponent(eventDetails.description)}&location=${encodeURIComponent(eventDetails.location)}`;
     
     window.open(googleCalendarUrl, '_blank');
   };

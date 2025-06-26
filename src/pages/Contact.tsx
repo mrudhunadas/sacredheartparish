@@ -2,9 +2,54 @@
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
 import { MapPin, Mail, Calendar, Heart } from 'lucide-react';
+import { useState } from 'react';
+import { useToast } from '@/hooks/use-toast';
+import PrayerRequestModal from '@/components/PrayerRequestModal';
 
 const Contact = () => {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const { toast } = useToast();
+  
+  const [formData, setFormData] = useState({
+    firstName: '',
+    lastName: '',
+    email: '',
+    phone: '',
+    subject: 'General Inquiry',
+    message: ''
+  });
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value
+    });
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    
+    // Simulate form submission
+    setTimeout(() => {
+      toast({
+        title: "Message Sent",
+        description: "Thank you for contacting us! We'll get back to you within 24 hours.",
+      });
+      setIsSubmitting(false);
+      setFormData({
+        firstName: '',
+        lastName: '',
+        email: '',
+        phone: '',
+        subject: 'General Inquiry',
+        message: ''
+      });
+    }, 1000);
+  };
+
   return (
     <div className="min-h-screen bg-background">
       <Navigation />
@@ -75,22 +120,30 @@ const Contact = () => {
               <h2 className="text-3xl font-bold text-sacred mb-6">Get in Touch</h2>
               <Card>
                 <CardContent className="p-6">
-                  <form className="space-y-4">
+                  <form onSubmit={handleSubmit} className="space-y-4">
                     <div className="grid md:grid-cols-2 gap-4">
                       <div>
                         <label className="block text-sm font-medium text-gray-700 mb-1">First Name</label>
                         <input 
                           type="text" 
+                          name="firstName"
+                          value={formData.firstName}
+                          onChange={handleInputChange}
                           className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-sacred focus:border-transparent"
                           placeholder="Your first name"
+                          required
                         />
                       </div>
                       <div>
                         <label className="block text-sm font-medium text-gray-700 mb-1">Last Name</label>
                         <input 
                           type="text" 
+                          name="lastName"
+                          value={formData.lastName}
+                          onChange={handleInputChange}
                           className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-sacred focus:border-transparent"
                           placeholder="Your last name"
+                          required
                         />
                       </div>
                     </div>
@@ -99,8 +152,12 @@ const Contact = () => {
                       <label className="block text-sm font-medium text-gray-700 mb-1">Email</label>
                       <input 
                         type="email" 
+                        name="email"
+                        value={formData.email}
+                        onChange={handleInputChange}
                         className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-sacred focus:border-transparent"
                         placeholder="your.email@example.com"
+                        required
                       />
                     </div>
                     
@@ -108,6 +165,9 @@ const Contact = () => {
                       <label className="block text-sm font-medium text-gray-700 mb-1">Phone Number</label>
                       <input 
                         type="tel" 
+                        name="phone"
+                        value={formData.phone}
+                        onChange={handleInputChange}
                         className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-sacred focus:border-transparent"
                         placeholder="+91 XXXXX XXXXX"
                       />
@@ -115,7 +175,12 @@ const Contact = () => {
                     
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-1">Subject</label>
-                      <select className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-sacred focus:border-transparent">
+                      <select 
+                        name="subject"
+                        value={formData.subject}
+                        onChange={handleInputChange}
+                        className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-sacred focus:border-transparent"
+                      >
                         <option>General Inquiry</option>
                         <option>Mass Schedule Question</option>
                         <option>Sacrament Preparation</option>
@@ -129,14 +194,22 @@ const Contact = () => {
                       <label className="block text-sm font-medium text-gray-700 mb-1">Message</label>
                       <textarea 
                         rows={4}
+                        name="message"
+                        value={formData.message}
+                        onChange={handleInputChange}
                         className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-sacred focus:border-transparent"
                         placeholder="Please share your message or question..."
+                        required
                       ></textarea>
                     </div>
                     
-                    <button className="w-full bg-sacred text-white py-2 px-4 rounded-md hover:bg-red-800 transition-colors">
-                      Send Message
-                    </button>
+                    <Button 
+                      type="submit" 
+                      disabled={isSubmitting}
+                      className="w-full bg-sacred text-white py-2 px-4 rounded-md hover:bg-red-800 transition-colors disabled:opacity-50"
+                    >
+                      {isSubmitting ? 'Sending Message...' : 'Send Message'}
+                    </Button>
                   </form>
                 </CardContent>
               </Card>
@@ -192,9 +265,11 @@ const Contact = () => {
               Submit your prayer intentions and our parish community will remember you in our prayers. 
               All requests are kept confidential and handled with care.
             </p>
-            <button className="bg-sacred text-white px-6 py-3 rounded-md hover:bg-red-800 transition-colors">
-              Submit Prayer Request
-            </button>
+            <PrayerRequestModal>
+              <Button className="bg-sacred text-white px-6 py-3 rounded-md hover:bg-red-800 transition-colors">
+                Submit Prayer Request
+              </Button>
+            </PrayerRequestModal>
           </div>
         </section>
       </div>

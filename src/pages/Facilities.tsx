@@ -1,6 +1,7 @@
 
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
+import VirtualTourRequestModal from '@/components/VirtualTourRequestModal';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { MapPin, Heart, Users, Calendar } from 'lucide-react';
 
@@ -119,9 +120,11 @@ const Facilities = () => {
                 We are working on creating a virtual tour of our parish facilities. This will allow you to 
                 explore our sacred spaces from the comfort of your home and better plan your visit.
               </p>
-              <button className="bg-sacred text-white px-6 py-3 rounded-md hover:bg-red-800 transition-colors">
-                Request Information
-              </button>
+              <VirtualTourRequestModal>
+                <button className="bg-sacred text-white px-6 py-3 rounded-md hover:bg-red-800 transition-colors">
+                  Request Information
+                </button>
+              </VirtualTourRequestModal>
             </CardContent>
           </Card>
         </section>
